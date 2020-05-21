@@ -24,12 +24,12 @@ let startBtn = document.getElementById("start"),
 
 let money, time;
 
-startBtn.addEventListener("click", function() {
-  time = prompt("Введите дату в формате YYYY-MM-DD", ""); //получаем данные от пользователя
-  money = +prompt("Ваш бюджет на месяц?", "");
+startBtn.addEventListener("click", function () {
+  time = prompt("Enter date in format YYYY-MM-DD", ""); //получаем данные от пользователя
+  money = +prompt("What is your budget for one month?", "");
 
   while (isNaN(money) || money == "" || money == null) {
-    money = +prompt("Ваш бюджет на месяц?", "");
+    money = +prompt("What is your budget for one month?", "");
   }
   appData.budget = money;
   appData.timeData = time;
@@ -39,13 +39,13 @@ startBtn.addEventListener("click", function() {
   dayValue.value = new Date(Date.parse(time)).getDate(); //получим день текущего месяца, его номер
 });
 
-expensesBtn.addEventListener("click", function() {
+expensesBtn.addEventListener("click", function () {
   let sum = 0;
 
   for (let i = 0; i < expensesItem.length; i++) {
     // цикл, работающий при любом кол-ве input
     let a = expensesItem[i].value, // с паомощью метода value, используем введенное значение
-        b = expensesItem[++i].value; // с помощью префиксного инкремента ++, для того чтобы получить сразу следующий за ним элемент
+      b = expensesItem[++i].value; // с помощью префиксного инкремента ++, для того чтобы получить сразу следующий за ним элемент
 
     if (
       typeof a === "string" &&
@@ -65,7 +65,7 @@ expensesBtn.addEventListener("click", function() {
   expensesValue.textContent = sum;
 });
 
-optionalexpensesBtn.addEventListener("click", function() {
+optionalexpensesBtn.addEventListener("click", function () {
   for (let i = 0; i < optionalExpensesItem.length; i++) {
     let opt = optionalExpensesItem[i].value;
     appData.optionalExpenses[i] = opt;
@@ -75,46 +75,46 @@ optionalexpensesBtn.addEventListener("click", function() {
 
 
 
-countBtn.addEventListener("click", function() {
+countBtn.addEventListener("click", function () {
   if (appData.budget != undefined) {
     appData.moneyPerDay = (appData.budget / 30).toFixed(); // записываем в глобальный объект и округляем до ближайшего целого значения
     dayBudgetValue.textContent = appData.moneyPerDay;
 
     if (appData.moneyPerDay < 100) {
-      levelValue.textContent = "Низкий уровень дохода";
+      levelValue.textContent = "Low income";
     } else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
-      levelValue.textContent = "Средний уровень дохода";
+      levelValue.textContent = "Average income";
     } else if (appData.moneyPerDay > 2000) {
-      levelValue.textContent = "Высокий уровень дохода";
+      levelValue.textContent = "High income";
     } else {
       levelValue.textContent = "error";
     }
   } else {
-    dayBudgetValue.textContent = 'Произошла ошибка';
+    dayBudgetValue.textContent = 'Must click Start Calculation';
   }
 });
 
-incomeItem.addEventListener('input', function() {//событие input 1) все значения, прописанные в поле input, сразу же отображатся в массиве. 2) событие change - все данные прописываются в массиве, только после того, как курсор сменит ацент на любом другом элементе(например кликаем в другое поле)
+incomeItem.addEventListener('input', function () { //событие input 1) все значения, прописанные в поле input, сразу же отображатся в массиве. 2) событие change - все данные прописываются в массиве, только после того, как курсор сменит ацент на любом другом элементе(например кликаем в другое поле)
   let items = incomeItem.value;
-  appData.income = items.split(", ");// вводим полчунное значение  в массив в глобальном объекте через запятую
-  incomeValue.textContent = appData.income;// при ввдение данных поле его данные тут же передаются и прописываются в массиве
+  appData.income = items.split(", "); // вводим полчунное значение  в массив в глобальном объекте через запятую
+  incomeValue.textContent = appData.income; // при ввдение данных поле его данные тут же передаются и прописываются в массиве
 });
 
-checkSavings.addEventListener('click', function() {
-  if (appData.savings == true) {// если чекбокс равен true
+checkSavings.addEventListener('click', function () {
+  if (appData.savings == true) { // если чекбокс равен true
     appData.savings = false; // то мы его выключаем
   } else {
     appData.savings = true;
   }
 });
 
-sumValue.addEventListener('input', function() {
+sumValue.addEventListener('input', function () {
   if (appData.savings == true) {
     let sum = +sumValue.value,
-        percent = +percentValue.value;
+      percent = +percentValue.value;
 
-    appData.monthIncome = sum / 100 / 12 * percent;//расчитваем на один месяц
-    appData.yearIncome = sum / 100 * percent;// расчитываем на один год
+    appData.monthIncome = sum / 100 / 12 * percent; //расчитваем на один месяц
+    appData.yearIncome = sum / 100 * percent; // расчитываем на один год
 
 
     monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
@@ -122,13 +122,13 @@ sumValue.addEventListener('input', function() {
   }
 });
 
-percentValue.addEventListener('input', function() {
+percentValue.addEventListener('input', function () {
   if (appData.savings == true) {
     let sum = +sumValue.value,
-        percent = +percentValue.value;
+      percent = +percentValue.value;
 
-    appData.monthIncome = sum / 100 / 12 * percent;//расчитваем на один месяц
-    appData.yearIncome = sum / 100 * percent;// расчитываем на один год
+    appData.monthIncome = sum / 100 / 12 * percent; //расчитваем на один месяц
+    appData.yearIncome = sum / 100 * percent; // расчитываем на один год
 
 
     monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
@@ -144,6 +144,3 @@ let appData = {
   income: [],
   savings: false
 };
-// for (let key in appData) {
-//   console.log("Наша программа включает в себя данные: " + key);
-// }

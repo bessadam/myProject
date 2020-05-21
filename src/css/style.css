@@ -133,7 +133,8 @@ a:active {
     color: #fff;
     font-weight: 100;
     font-size: 12px;
-    cursor: pointer
+    cursor: pointer;
+    color: rgb(57, 57, 173);
 }
 
 .data .optionalexpenses-item {
@@ -167,6 +168,7 @@ a:active {
 }
 
 .data .start {
+    color: rgb(57, 57, 173);
     width: 70px;
     height: 30px;
     display: block;
@@ -175,7 +177,6 @@ a:active {
     border-radius: 2.5px;
     background-image: linear-gradient(336deg, #ffbd75, #ff964b), linear-gradient(#fff, #fff);
     box-shadow: 0 2.5px 10px 0 rgba(1, 0, 42, .1);
-    color: #fff;
     font-weight: 100;
     font-size: 12px;
     cursor: pointer;
@@ -265,7 +266,7 @@ a:active {
     padding-left: 10px;
     margin-bottom: 10px;
     font-size: 14px;
-    color: #a7a7a7;
+    color: blue;
     width: 80px;
     height: 30px;
     margin-left: 25px
